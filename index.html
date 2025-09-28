@@ -248,7 +248,7 @@
         }
 
         /* ===== Responsividade ===== */
-        @media (max-width: 768px) {
+        @media (max-width:768px) {
             .slideshow {
                 max-width: 95%;
             }
@@ -297,17 +297,21 @@
     </div>
 
     <script>
-        // ===== Slideshow =====
+        // ===== Slideshow otimizado =====
         const slideshowContainer = document.getElementById("slideshow");
         const totalFotos = 16;
+        const imagens = [];
         for (let i = 1; i <= totalFotos; i++) {
             const img = document.createElement("img");
             img.src = `assets/img/${i}.jpg`;
-            img.loading = "lazy";
+            img.loading = "eager"; // Evita o aviso do navegador
             if (i === 1) img.classList.add("active");
+            img.addEventListener("load", () => {
+                // Pode adicionar lógica se quiser algo ao carregar
+            });
             slideshowContainer.appendChild(img);
+            imagens.push(img);
         }
-        const imagens = document.querySelectorAll(".slideshow img");
         let index = 0;
         setInterval(() => {
             imagens[index].classList.remove("active");
@@ -330,7 +334,12 @@
         atualizarContador();
 
         // ===== Frases =====
-        const frases = ["Ao seu lado, o tempo voa ⏳❤️","Amo até quando você pega no meu pé ❤️","Você me faz Feliz! 🌹","Que esses dias se transformem em Anos e Décadas juntos ⏳🙌"];
+        const frases = [
+            "Ao seu lado, o tempo voa ⏳❤️",
+            "Amo até quando você pega no meu pé ❤️",
+            "Você me faz Feliz! 🌹",
+            "Que esses dias se transformem em Anos e Décadas juntos ⏳🙌"
+        ];
         setInterval(() => {
             const f = document.getElementById("frase");
             f.style.opacity = 0;
@@ -350,7 +359,7 @@
             barras.forEach((bar, i) => {
                 const altura = alturasOriginais[i] + Math.sin(Date.now() / 200 + i) * 5;
                 bar.style.height = `${Math.max(5, altura)}px`;
-                bar.style.background = `linear-gradient(to top, hsl(${(Date.now() / 30 + i * 50) % 360},90%,60%), #ffeb3b)`;
+                bar.style.background = `linear-gradient(to top,hsl(${(Date.now() / 30 + i * 50) % 360},90%,60%),#ffeb3b)`;
             });
         }
         function iniciarEqualizador() {
@@ -366,7 +375,7 @@
             }).catch(() => {
                 const aviso = document.createElement("div");
                 aviso.id = "avisoClick";
-                aviso.textContent = "Toque para ouvir🎵";
+                aviso.textContent = "Toque para ouvir 🎵";
                 aviso.style.position = "fixed";
                 aviso.style.bottom = "20px";
                 aviso.style.left = "50%";
@@ -386,7 +395,6 @@
                 }, { once: true });
             });
         }
-
         window.addEventListener("load", tocarMusica);
 
         btnPlayPause.addEventListener("click", () => {
