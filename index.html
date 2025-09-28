@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos Momentos❤️</title>
+    <title>Nós ❤️</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap"
         rel="stylesheet">
@@ -225,7 +225,9 @@
         }
 
         .player-progress div {
-            flex: 1;
+            flex: 0 0 5.5%;
+            /* barras mais finas para 16 unidades */
+            margin: 0 0.5%;
             border-radius: 3px;
             height: 6px;
             background: linear-gradient(to top, #ffeb3b, #ff5722);
@@ -291,24 +293,30 @@
                     <div></div>
                     <div></div>
                     <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ===== Slideshow otimizado =====
+        // ===== Slideshow =====
         const slideshowContainer = document.getElementById("slideshow");
         const totalFotos = 16;
         const imagens = [];
         for (let i = 1; i <= totalFotos; i++) {
             const img = document.createElement("img");
             img.src = `assets/img/${i}.jpg`;
-            img.loading = "eager"; // Evita o aviso do navegador
+            img.loading = "eager";
             if (i === 1) img.classList.add("active");
-            img.addEventListener("load", () => {
-                // Pode adicionar lógica se quiser algo ao carregar
-            });
             slideshowContainer.appendChild(img);
             imagens.push(img);
         }
@@ -431,4 +439,3 @@
 </body>
 
 </html>
-
